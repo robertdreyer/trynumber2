@@ -1,4 +1,4 @@
-README
+Homework 1 Stat 433
 ================
 Robert Dreyer
 2022-09-27
@@ -27,8 +27,8 @@ library(nycflights13)
 library(ggplot2)
 ```
 
-\#Q1: How many flights have a missing dep_time? What other variables are
-missing? What might these rows represent?
+**Q1: How many flights have a missing dep_time? What other variables are
+missing? What might these rows represent?**
 
 ``` r
 no_dep <- subset(flights, is.na(flights$dep_time))
@@ -66,10 +66,10 @@ arr_delay, and air_time are also missing values in these rows. These
 rows might represent cancelled flights because they never departed or
 arrived, meaning that the flight never took place.
 
-\#Q2: Currently dep_time and sched_dep_time are convenient to look at,
+**Q2: Currently dep_time and sched_dep_time are convenient to look at,
 but hard to compute with because they’re not really continuous numbers.
 Convert them to a more convenient representation of number of minutes
-since midnight.
+since midnight.**
 
 ``` r
 minutes_flights <- flights %>% 
@@ -97,13 +97,13 @@ select(minutes_flights, dep_time, dep_minutes, arr_time, arr_minutes)
     ## 10      558         358      753         478
     ## # … with 336,766 more rows
 
-\#Q3:Look at the number of canceled flights per day. Is there a pattern?
+**Q3:Look at the number of canceled flights per day. Is there a pattern?
 Is the proportion of canceled flights related to the average delay? Use
 multiple dyplr operations, all on one line, concluding with
-ggplot(aes(x= ,y=)) + geom_point()
+ggplot(aes(x= ,y=)) + geom_point()**
 
 ``` r
-flights %>% group_by(month, day) %>%
+flights %>% group_by(month,day) %>%
   summarise(total = n(), cancelled = sum(is.na(dep_time)), avg_delay = mean(dep_delay, na.rm = TRUE)) %>%
   mutate(cancel_prop = cancelled/total) %>%
   ggplot(aes(x = cancel_prop,y = avg_delay)) + geom_point()
