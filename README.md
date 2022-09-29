@@ -3,6 +3,8 @@ Homework 1 Stat 433
 Robert Dreyer
 2022-09-27
 
+[robertdreyer github](https://github.com/robertdreyer/myrepo)
+
 ``` r
 library(dplyr)
 ```
@@ -101,6 +103,9 @@ select(minutes_flights, dep_time, dep_minutes, arr_time, arr_minutes)
 Is the proportion of canceled flights related to the average delay? Use
 multiple dyplr operations, all on one line, concluding with
 ggplot(aes(x= ,y=)) + geom_point()**
+
+From the plot, it looks as though days with more cancelled flights also
+have higher average delays.
 
 ``` r
 flights %>% group_by(month,day) %>%
